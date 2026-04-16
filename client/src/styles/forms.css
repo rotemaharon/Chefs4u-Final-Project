@@ -1,0 +1,80 @@
+.form-input-rounded {
+  border-radius: 2rem !important;
+  padding: 0.75rem 1.25rem !important;
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+  background-color: #fcfcfc;
+}
+
+.form-input-rounded:focus {
+  border-color: var(--light-brown);
+  box-shadow: 0 0 0 0.25rem rgba(200, 159, 122, 0.25);
+  background-color: white;
+}
+
+.auth-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .auth-container {
+    min-height: auto;
+    align-items: flex-start;
+    padding-top: 1.5rem;
+  }
+}
+
+.auth-card {
+  border-radius: 1.5rem;
+}
+
+select.form-input-rounded {
+  padding-right: 3.2rem !important;
+  padding-left: 2rem !important;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%238d623b' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: left 1rem center;
+  background-size: 16px 12px;
+}
+
+.form-input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.form-input-group .input-icon {
+  position: absolute;
+  right: 1.2rem;
+  left: auto !important;
+  color: #a0a0a0;
+  z-index: 5;
+}
+
+.form-input-group .form-input-rounded {
+  padding-right: 3.2rem !important;
+  padding-left: 1.2rem !important;
+  text-align: right;
+}
+
+.password-toggle-icon {
+  position: absolute;
+  left: 1.2rem;
+  right: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 10;
+  color: #a0a0a0;
+  background: none;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}

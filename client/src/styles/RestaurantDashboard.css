@@ -1,0 +1,62 @@
+.dashboard-container {
+  direction: rtl;
+  color: #8d623b !important;
+}
+
+.dashboard-container .badge {
+  border: none !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.dashboard-container .badge-active {
+  background-color: #8d623b !important;
+  color: #ffffff !important;
+}
+
+.dashboard-container .badge-inactive {
+  background-color: #6c757d !important;
+  color: #ffffff !important;
+}
+
+.dashboard-container .badge-accepted {
+  background-color: #4b6b44 !important;
+  color: #ffffff !important;
+}
+
+.dashboard-container .badge-rejected {
+  background-color: #a34b4b !important;
+  color: #ffffff !important;
+}
+
+.dashboard-container .badge-date {
+  background-color: #f1e5d9 !important;
+  color: #8d623b !important;
+  border: 1px solid #8d623b !important;
+}
+
+.dashboard-container .candidates-title {
+  color: #8d623b !important;
+  font-weight: bold !important;
+  border-right: 4px solid #8d623b;
+  padding-right: 10px;
+}
+
+.dashboard-container .custom-switch .form-check-input:checked {
+  background-color: #8d623b !important;
+  border-color: #8d623b !important;
+}
+
+.dashboard-container .custom-switch .form-check-label {
+  color: #8d623b !important;
+  font-weight: bold;
+}
+
+.dashboard-container .btn-mocha {
+  background-color: #f1e5d9 !important;
+  color: #8d623b !important;
+  border: none !important;
+  font-weight: bold !important;
+}
+.dashboard-container .btn-mocha:hover {
+  background-color: #e8d8c8 !important;
+}
