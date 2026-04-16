@@ -36,13 +36,13 @@ Chefs4u is a platform designed to connect restaurants with professional cooks. T
 For testing the project, you can use the following demo accounts:
 
 **Admin:**
-- Email: admin@chefs4u.com
-- Password: Admin1234!
+- Email: admin@gmail.com
+- Password: Admin123123!
 
 **Restaurant:**
-- Email: restaurant@chefs4u.com
-- Password: Rest1234!
+- Email: restaurant@gmail.com
+- Password: Aa123123!
 
 **Cook:**
-- Email: cook@chefs4u.com
-- Password: Cook1234!
+- Email: test@rest.com
+- Password: Admin123123!
