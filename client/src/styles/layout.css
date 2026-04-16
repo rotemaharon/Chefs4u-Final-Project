@@ -106,13 +106,24 @@
   left: auto !important;
   right: 0 !important;
 }
-
 @media (max-width: 991px) {
-  .hero-section-kidibe .input-group,
-  .hero-section-kidibe .form-select {
+  .hero-section-kidibe .input-group {
     background-color: #f8f5f0;
     border-radius: 2rem;
-    padding: 0.3rem 0.5rem;
+    padding: 0.2rem;
+  }
+  
+  .hero-section-kidibe .form-control {
+    background-color: transparent;
+    padding-right: 5px; 
+  }
+
+  .hero-section-kidibe .form-select {
+    background-color: transparent;
+    text-align: right; 
+    padding-right: 5px; 
+    padding-left: 45px !important; 
+    background-position: left 15px center !important; 
   }
 
   .hero-section-kidibe .btn-brown.rounded-pill.w-100 {
