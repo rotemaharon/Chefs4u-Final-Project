@@ -179,7 +179,7 @@ const AdminDashboard = () => {
         {activeTab === "users" && (
           <div className="table-responsive">
             <Table hover className="mb-0 align-middle text-center">
-              <thead className="bg-cream text-brown">
+              <thead className="bg-cream text-brown text-nowrap">
                 <tr>
                   <th className="py-4 border-0">שם מלא</th>
                   <th className="py-4 border-0">אימייל</th>
@@ -195,22 +195,22 @@ const AdminDashboard = () => {
                   const isSelf = u._id === user?.id;
                   return (
                     <tr key={u._id} className="border-bottom border-light">
-                      <td className="fw-bold py-4">
+                      <td className="fw-bold py-4 text-nowrap">
                         {u.fullName}
                         {isSelf && (
-                          <span className="text-muted small ms-2">
-                            (אתה)
-                          </span>
+                          <span className="text-muted small ms-2">(אתה)</span>
                         )}
                       </td>
-                      <td className="text-muted">{u.email}</td>
-                      <td className="text-muted">{u.phone || "---"}</td>
-                      <td className="text-muted">
+                      <td className="text-muted text-nowrap">{u.email}</td>
+                      <td className="text-muted text-nowrap">
+                        {u.phone || "---"}
+                      </td>
+                      <td className="text-muted text-nowrap">
                         {new Date(u.createdAt).toLocaleDateString("he-IL")}
                       </td>
                       <td>
                         <span
-                          className="px-3 py-2 rounded-pill d-inline-block fw-bold small"
+                          className="px-3 py-2 rounded-pill d-inline-block fw-bold small text-nowrap"
                           style={{
                             backgroundColor:
                               u.role === "admin"
@@ -232,7 +232,10 @@ const AdminDashboard = () => {
                         <Form.Select
                           size="sm"
                           className="form-input-rounded border-0 bg-cream text-brown mx-auto"
-                          style={{ maxWidth: "120px", cursor: isSelf ? "not-allowed" : "pointer" }}
+                          style={{
+                            maxWidth: "120px",
+                            cursor: isSelf ? "not-allowed" : "pointer",
+                          }}
                           value={u.role}
                           disabled={isSelf}
                           onChange={(e) =>
@@ -274,30 +277,34 @@ const AdminDashboard = () => {
         {activeTab === "favorites" && (
           <div className="table-responsive">
             <Table hover className="mb-0 align-middle text-center">
-              <thead className="bg-cream text-brown">
+              <thead className="bg-cream text-brown text-nowrap">
                 <tr>
                   <th className="py-4 border-0">דירוג פופולריות</th>
                   <th className="py-4 border-0">כותרת המשרה</th>
                   <th className="py-4 border-0">מסעדה מפרסמת</th>
                   <th className="py-4 border-0">מיקום</th>
-                  <th className="py-4 border-0">כמות לייקים (מועדפים)</th>
+                  <th className="py-4 border-0 text-center">
+                    כמות לייקים (מועדפים)
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {popularJobs.map((job, index) => (
                   <tr key={job._id} className="border-bottom border-light">
-                    <td className="fw-bold py-4">#{index + 1}</td>
-                    <td className="fw-bold text-brown">{job.title}</td>
-                    <td className="text-muted">
+                    <td className="fw-bold py-4 text-nowrap">#{index + 1}</td>
+                    <td className="fw-bold text-brown text-nowrap">
+                      {job.title}
+                    </td>
+                    <td className="text-muted text-nowrap">
                       {job.restaurantId?.fullName || "לא ידוע"}
                     </td>
-                    <td className="text-muted">{job.location}</td>
-                    <td>
+                    <td className="text-muted text-nowrap">{job.location}</td>
+                    <td className="text-center align-middle">
                       <span
-                        className="px-4 py-2 rounded-pill fw-bold"
+                        className="px-4 py-2 rounded-pill fw-bold d-inline-flex align-items-center justify-content-center gap-2 text-nowrap"
                         style={{ backgroundColor: "#f3e9dc", color: "#8d623b" }}
                       >
-                        <FaHeart className="text-danger me-2" />{" "}
+                        <FaHeart className="text-danger" />
                         {job.favoritesCount}
                       </span>
                     </td>

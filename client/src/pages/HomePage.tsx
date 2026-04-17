@@ -75,7 +75,7 @@ const HomePage = () => {
 
     try {
       await api.post(`/jobs/${jobId}/apply`, {});
-      toast.success("מועמדותך הוגשה בהצלחה! בהצלחה בסרוויס 👨‍🍳");
+      toast.success("מועמדותך הוגשה בהצלחה! בהצלחה בסרוויס");
       navigate("/cook-dashboard");
     } catch (err: unknown) {
       if (axios.isAxiosError(err)) {
