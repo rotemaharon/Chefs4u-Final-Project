@@ -88,17 +88,25 @@ const ProfilePage = () => {
       setUploadingImage(false);
     }
   };
-
   const handleUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const updateData = {
+      const updateData: {
+        fullName: string;
+        phone: string;
+        experienceYears?: number;
+        specialty?: string;
+        bio?: string;
+      } = {
         fullName,
         phone,
-        experienceYears,
-        specialty,
-        bio,
       };
+
+      if (experienceYears !== "" && !isNaN(Number(experienceYears))) {
+        updateData.experienceYears = Number(experienceYears);
+      }
+      if (specialty.trim() !== "") updateData.specialty = specialty;
+      if (bio.trim() !== "") updateData.bio = bio;
 
       await api.put(`/auth/profile`, updateData);
       toast.success("הפרופיל עודכן בהצלחה!");

@@ -18,9 +18,7 @@ const jobUpdateSchema = Joi.object({
   description: Joi.string().min(10).max(1000),
   location: Joi.string().min(2),
   hourlyWage: Joi.number().min(1),
-  shiftDate: Joi.date().greater("now").messages({
-    "date.greater": "תאריך המשמרת חייב להיות בעתיד",
-  }),
+  shiftDate: Joi.date(),
   requiredWorkers: Joi.number().min(1),
 }).min(1);
 
@@ -284,6 +282,10 @@ exports.deleteJob = async (req, res) => {
 
 exports.toggleJobStatus = async (req, res) => {
   try {
+    if (req.user.role !== "restaurant" && req.user.role !== "admin") {
+      return res.status(403).json({ message: "אין לך הרשאה לשנות סטטוס משרה" });
+    }
+
     const job = await Job.findById(req.params.id);
     if (!job) return res.status(404).json({ message: "המשרה לא נמצאה" });
 
@@ -298,7 +300,7 @@ exports.toggleJobStatus = async (req, res) => {
     await job.save();
 
     res.json({
-      message: job.isActive ? "המשרה נפתחה מחדש" : "המשרה נסגרה (אוישה)",
+      message: job.isActive ? "המשרה נפתחה מחדש" : "המשרה נסגרה",
       isActive: job.isActive,
     });
   } catch (err) {

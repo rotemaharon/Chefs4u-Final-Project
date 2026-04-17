@@ -129,11 +129,13 @@ exports.updateProfile = async (req, res) => {
     }
 
     const updateData = {};
-    if (req.body.fullName !== undefined) updateData.fullName = req.body.fullName;
+    if (req.body.fullName !== undefined)
+      updateData.fullName = req.body.fullName;
     if (req.body.phone !== undefined) updateData.phone = req.body.phone;
     if (req.body.experienceYears !== undefined)
       updateData.experienceYears = req.body.experienceYears;
-    if (req.body.specialty !== undefined) updateData.specialty = req.body.specialty;
+    if (req.body.specialty !== undefined)
+      updateData.specialty = req.body.specialty;
     if (req.body.bio !== undefined) updateData.bio = req.body.bio;
 
     const user = await User.findByIdAndUpdate(
@@ -207,7 +209,7 @@ exports.getFavorites = async (req, res) => {
   try {
     const user = await User.findById(req.user.id).populate({
       path: "favorites",
-      populate: { path: "restaurantId", select: "fullName" },
+      populate: { path: "restaurantId", select: "fullName profileImage" },
     });
     if (!user) return res.status(404).json({ message: "משתמש לא נמצא" });
     res.json(user.favorites);
@@ -239,7 +241,9 @@ exports.updateUserRole = async (req, res) => {
     }
 
     if (req.params.id === req.user.id) {
-      return res.status(400).json({ message: "לא ניתן לשנות את ההרשאה של עצמך" });
+      return res
+        .status(400)
+        .json({ message: "לא ניתן לשנות את ההרשאה של עצמך" });
     }
 
     const { role } = req.body;
@@ -281,9 +285,9 @@ exports.forgotPassword = async (req, res) => {
     const user = await User.findOne({ email });
 
     if (!user) {
-      return res
-        .status(404)
-        .json({ message: "לא נמצא משתמש עם כתובת אימייל זו" });
+      return res.json({
+        message: "אם כתובת המייל קיימת במערכת, נשלחה אליה הודעה עם הוראות",
+      });
     }
 
     const resetToken = crypto.randomBytes(20).toString("hex");
@@ -313,7 +317,9 @@ exports.forgotPassword = async (req, res) => {
     };
 
     await transporter.sendMail(mailOptions);
-    res.json({ message: "הודעת אימייל עם הוראות נשלחה לכתובת המבוקשת" });
+    res.json({
+      message: "אם כתובת המייל קיימת במערכת, נשלחה אליה הודעה עם הוראות",
+    });
   } catch (err) {
     res.status(500).json({ message: "שגיאת שרת בשליחת אימייל לשחזור" });
   }

@@ -89,10 +89,14 @@ exports.getConversations = async (req, res) => {
     res.status(500).json({ message: "שגיאה בטעינת השיחות" });
   }
 };
-
 exports.hideConversation = async (req, res) => {
   try {
     const { userId } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      return res.status(400).json({ message: "מזהה משתמש לא תקין" });
+    }
+
     const myId = new mongoose.Types.ObjectId(req.user.id);
     const otherId = new mongoose.Types.ObjectId(userId);
 
