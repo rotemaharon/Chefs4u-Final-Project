@@ -206,7 +206,7 @@ const Navbar = () => {
           to="/"
           onClick={closeNav}
           className="fw-bold fs-2 text-brown d-flex align-items-center gap-3 m-0"
-          style={{ letterSpacing: "-1px", flex: 1 }}
+          style={{ letterSpacing: "-1px" }}
         >
           <img
             src="/LOGO.png"
@@ -229,7 +229,7 @@ const Navbar = () => {
 
         <BSNavbar.Collapse
           id="basic-navbar-nav"
-          className="flex-grow-0 justify-content-center"
+          className="flex-grow-1 justify-content-end me-3"
         >
           <Nav className="align-items-center gap-2 gap-lg-4 mt-3 mt-lg-0 text-center">
             {renderNavLinks()}
@@ -247,13 +247,11 @@ const Navbar = () => {
           </Nav>
         </BSNavbar.Collapse>
 
-        <div
-          className="d-none d-lg-flex justify-content-end align-items-center"
-          style={{ flex: 1 }}
-        >
+        <div className="d-none d-lg-flex justify-content-end align-items-center">
           {isAuthenticated && (
             <>
-              <div className="bg-cream px-3 py-2 rounded-pill d-flex align-items-center me-3">
+              <div className="bg-cream px-3 py-2 rounded-pill d-flex align-items-center ms-3">
+                {" "}
                 <span className="text-brown fw-bold small">
                   {user?.fullName}{" "}
                   <span className="text-muted fw-normal mx-1">|</span>
