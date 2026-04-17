@@ -1,48 +1,60 @@
-# Chefs4u - Final Project
-**Student:** Rotem Aharon  
+# Chefs4u - פרויקט גמר
+ רותם אהרון
 
-## Project Overview
-Chefs4u is a platform designed to connect restaurants with professional cooks. The system allows restaurants to post and manage shifts while providing cooks with tools to find work and manage their applications. The application is fully responsive and supports all screen sizes.
+## על הפרויקט
+פלטפורמה שמחברת בין מסעדות לטבחים. מסעדות מפרסמות משרות למשמרות, וטבחים מחפשים עבודה, מגישים מועמדות, ומנהלים את הפניות שלהם.
 
-## User Roles and Functionality
-- **Cook:** Browse jobs, filter by location and wage, save favorites, and apply for shifts.
-- **Restaurant:** Post job openings, manage active shifts, and review applicants.
-- **Admin:** Manage users, update permissions, delete content, and view system statistics.
+## סוגי משתמשים
+- **טבח (Cook):** חיפוש וסינון משרות, מועדפים, הגשת מועמדות, ניהול מועמדויות.
+- **מסעדה (Restaurant):** פרסום משרות, עריכה/מחיקה של המשרות שלה, ניהול מועמדים.
+- **מנהל (Admin):** ניהול משתמשים והרשאות, דוח פופולריות, כל ההרשאות האחרות.
 
-## Key Features & Bonuses
-- **Security:** JWT authentication with 4-hour expiration and rate limiting for API protection.
-- **Admin Dashboard:** Management interface for users and popularity reports based on favorites.
-- **Password Recovery:** Email-based password reset system using secure tokens.
-- **Profile Image Upload:** User profile images are uploaded and stored on the server.
-- **Validation:** Comprehensive server and client-side validation using Joi and Regex.
+## מאפיינים עיקריים
+- CRUD מלא למשרות + מערכת מועמדויות עם סטטוסים (ממתין/אושר/נדחה)
+- מועדפים נשמרים בשרת (זמין מכל מכשיר)
+- מערכת הודעות פנימית בין טבח למסעדה
+- איפוס סיסמה במייל עם טוקן חד-פעמי
+- העלאת תמונת פרופיל
+- חיפוש, סינון, ושני מצבי תצוגה (כרטיסים/טבלה)
+- JWT עם התנתקות אוטומטית אחרי 4 שעות
+- Rate limiting, CORS מוגבל, ולידציה כפולה (Joi + קליינט)
 
-## Tech Stack
-- **Frontend:** React, TypeScript, Redux Toolkit, React-Bootstrap, Axios.
-- **Backend:** Node.js, Express, MongoDB, Mongoose.
-- **Utilities:** Nodemailer, Morgan, Bcryptjs, Multer.
+## טכנולוגיות
+**Frontend:** React 19, TypeScript, Redux Toolkit, React-Bootstrap, Axios
+**Backend:** Node.js, Express, MongoDB, Mongoose, JWT, Bcrypt, Multer, Nodemailer
 
-## Installation and Setup
+## התקנה והרצה
+
 ### Server
-1. Navigate to `/server` and run `npm install`.
-2. Configure `.env` with: `MONGO_URI`, `JWT_SECRET`, `EMAIL_USER`, `EMAIL_PASS`.
-3. Run `npm run dev`.
+```bash
+cd server
+npm install
+npm run dev
+```
+צרי קובץ `.env` לפי `.env.example` (MONGO_URI, JWT_SECRET, EMAIL_USER, EMAIL_PASS, FRONTEND_URL).
 
 ### Client
-1. Navigate to `/client` and run `npm install`.
-2. Configure `.env` with: `VITE_API_URL`.
-3. Run `npm run dev`.
+```bash
+cd client
+npm install
+npm run dev
+```
+צרי קובץ `.env` לפי `.env.example` (VITE_API_URL).
 
-## Demo Users
-For testing the project, you can use the following demo accounts:
+האפליקציה תיפתח ב-`http://localhost:5173`.
 
-**Admin:**
-- Email: admin@gmail.com
-- Password: Admin123123!
+## API Endpoints
 
-**Restaurant:**
-- Email: restaurant@gmail.com
-- Password: Aa123123!
+### `/api/auth`
+הרשמה והתחברות, ניהול פרופיל, מועדפים, ניהול משתמשים (אדמין), איפוס סיסמה.
 
-**Cook:**
-- Email: test@rest.com
-- Password: Admin123123!
+### `/api/jobs`
+CRUD של משרות, הגשת/ביטול מועמדות, ניהול מועמדים, דוח פופולריות.
+
+### `/api/messages`
+שליחת הודעות, שיחות, סטטוס נקראו/לא נקראו.
+
+## משתמשי דמו
+ מנהל | admin@gmail.com | Admin123123! 
+ מסעדה | restaurant@gmail.com | Aa123123! 
+ טבח | test@rest.com | Admin123123! 
