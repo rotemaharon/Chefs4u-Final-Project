@@ -59,6 +59,7 @@ exports.register = async (req, res) => {
       },
     );
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "שגיאת שרת" });
   }
 };
@@ -98,6 +99,7 @@ exports.login = async (req, res) => {
       },
     );
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "שגיאת שרת" });
   }
 };
@@ -107,6 +109,7 @@ exports.getProfile = async (req, res) => {
     const user = await User.findById(req.user.id).select("-password");
     res.json(user);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "שגיאת שרת" });
   }
 };
@@ -146,6 +149,7 @@ exports.updateProfile = async (req, res) => {
 
     res.json(user);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "שגיאת שרת בעדכון הפרופיל" });
   }
 };
@@ -181,6 +185,7 @@ exports.uploadProfileImage = async (req, res) => {
 
     res.json({ profileImage: imageUrl });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "שגיאת שרת בהעלאת התמונה" });
   }
 };
@@ -201,6 +206,7 @@ exports.toggleFavorite = async (req, res) => {
     await user.save();
     res.json(user.favorites);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "שגיאת שרת בעדכון מועדפים" });
   }
 };
@@ -214,6 +220,7 @@ exports.getFavorites = async (req, res) => {
     if (!user) return res.status(404).json({ message: "משתמש לא נמצא" });
     res.json(user.favorites);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "שגיאת שרת בשליפת מועדפים" });
   }
 };
@@ -223,6 +230,7 @@ exports.getAllUsers = async (req, res) => {
     const users = await User.find().select("-password").sort({ createdAt: -1 });
     res.json(users);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "שגיאת שרת בשליפת משתמשים" });
   }
 };
@@ -254,6 +262,7 @@ exports.updateUserRole = async (req, res) => {
     ).select("-password");
     res.json(user);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "שגיאת שרת בעדכון הרשאות משתמש" });
   }
 };
@@ -275,6 +284,7 @@ exports.deleteUser = async (req, res) => {
     await User.findByIdAndDelete(userId);
     res.json({ message: "המשתמש נמחק בהצלחה" });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "שגיאת שרת במחיקת משתמש" });
   }
 };
@@ -321,6 +331,7 @@ exports.forgotPassword = async (req, res) => {
       message: "אם כתובת המייל קיימת במערכת, נשלחה אליה הודעה עם הוראות",
     });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "שגיאת שרת בשליחת אימייל לשחזור" });
   }
 };
@@ -356,6 +367,7 @@ exports.resetPassword = async (req, res) => {
     await user.save();
     res.json({ message: "הסיסמה שונתה בהצלחה" });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "שגיאת שרת בעדכון הסיסמה החדשה" });
   }
 };

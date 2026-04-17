@@ -48,6 +48,7 @@ exports.createJob = async (req, res) => {
     await job.save();
     res.status(201).json(job);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "שגיאה ביצירת המשרה" });
   }
 };
@@ -60,6 +61,7 @@ exports.getAllJobs = async (req, res) => {
       .select("-applicants");
     res.json(jobs);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "שגיאה בטעינת המשרות" });
   }
 };
@@ -94,6 +96,7 @@ exports.getMyApplications = async (req, res) => {
 
     res.json(myApps);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "שגיאה בטעינת המועמדויות" });
   }
 };
@@ -125,6 +128,7 @@ exports.applyForJob = async (req, res) => {
     await job.save();
     res.json({ message: "המועמדות הוגשה בהצלחה! בהצלחה " });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "שגיאה בהגשת המועמדות" });
   }
 };
@@ -142,6 +146,7 @@ exports.cancelApplication = async (req, res) => {
 
     res.json({ message: "המועמדות בוטלה בהצלחה" });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "שגיאה בביטול המועמדות" });
   }
 };
@@ -161,6 +166,7 @@ exports.getRestaurantJobs = async (req, res) => {
 
     res.json(jobs);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "שגיאה בטעינת משרות המסעדה" });
   }
 };
@@ -209,6 +215,7 @@ exports.updateApplicantStatus = async (req, res) => {
       status: applicant.status,
     });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "שגיאה בעדכון הסטטוס" });
   }
 };
@@ -222,6 +229,7 @@ exports.getJobById = async (req, res) => {
 
     res.json(job);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "שגיאה בטעינת המשרה" });
   }
 };
@@ -257,6 +265,7 @@ exports.updateJob = async (req, res) => {
     await job.save();
     res.json(job);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "שגיאה בעדכון המשרה" });
   }
 };
@@ -276,6 +285,7 @@ exports.deleteJob = async (req, res) => {
     await Job.findByIdAndDelete(req.params.id);
     res.json({ message: "המשרה נמחקה בהצלחה" });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "שגיאה במחיקת המשרה" });
   }
 };
@@ -304,6 +314,7 @@ exports.toggleJobStatus = async (req, res) => {
       isActive: job.isActive,
     });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "שגיאה בשינוי סטטוס המשרה" });
   }
 };
@@ -338,6 +349,7 @@ exports.getJobFavoritesStats = async (req, res) => {
 
     res.json(popularJobs);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "שגיאה בשליפת סטטיסטיקת מועדפים" });
   }
 };
