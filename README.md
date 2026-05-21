@@ -1,29 +1,10 @@
-# Chefs4u - פרויקט גמר
- רותם אהרון
+# Chefs4u - Full Stack Final Project
 
-## על הפרויקט
-פלטפורמה שמחברת בין מסעדות לטבחים. מסעדות מפרסמות משרות למשמרות, וטבחים מחפשים עבודה, מגישים מועמדות, ומנהלים את הפניות שלהם.
+**Developed by Rotem Aharon**
 
-## סוגי משתמשים
-- **טבח (Cook):** חיפוש וסינון משרות, מועדפים, הגשת מועמדות, ניהול מועמדויות.
-- **מסעדה (Restaurant):** פרסום משרות, עריכה/מחיקה של המשרות שלה, ניהול מועמדים.
-- **מנהל (Admin):** ניהול משתמשים והרשאות, דוח פופולריות, כל ההרשאות האחרות.
+A platform connecting restaurants with professional chefs. Restaurants post shifts, chefs apply and manage their applications.
 
-## מאפיינים עיקריים
-- CRUD מלא למשרות + מערכת מועמדויות עם סטטוסים (ממתין/אושר/נדחה)
-- מועדפים נשמרים בשרת (זמין מכל מכשיר)
-- מערכת הודעות פנימית בין טבח למסעדה
-- איפוס סיסמה במייל עם טוקן חד-פעמי
-- העלאת תמונת פרופיל
-- חיפוש, סינון, ושני מצבי תצוגה (כרטיסים/טבלה)
-- JWT עם התנתקות אוטומטית אחרי 4 שעות
-- Rate limiting, CORS מוגבל, ולידציה כפולה (Joi + קליינט)
-
-## טכנולוגיות
-**Frontend:** React 19, TypeScript, Redux Toolkit, React-Bootstrap, Axios
-**Backend:** Node.js, Express, MongoDB, Mongoose, JWT, Bcrypt, Multer, Nodemailer
-
-## התקנה והרצה
+## Getting Started
 
 ### Server
 ```bash
@@ -31,30 +12,65 @@ cd server
 npm install
 npm run dev
 ```
-צרי קובץ `.env` לפי `.env.example` (MONGO_URI, JWT_SECRET, EMAIL_USER, EMAIL_PASS, FRONTEND_URL).
-
+Create a `.env` file based on `server/.env.example`:
+```
+PORT=3000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_email_password
+FRONTEND_URL=http://localhost:5173
+```
 ### Client
 ```bash
 cd client
 npm install
 npm run dev
 ```
-צרי קובץ `.env` לפי `.env.example` (VITE_API_URL).
+Create a `.env` file based on `client/.env.example`:
+```
+VITE_API_URL=http://localhost:3000/api
+```
 
-האפליקציה תיפתח ב-`http://localhost:5173`.
+The app will open at `http://localhost:5173`.
 
-## API Endpoints
+## User Roles
 
-### `/api/auth`
-הרשמה והתחברות, ניהול פרופיל, מועדפים, ניהול משתמשים (אדמין), איפוס סיסמה.
+| Role | Permissions |
+|------|-------------|
+| Cook | Browse and filter jobs, save favorites, apply for shifts, manage applications |
+| Restaurant | Post, edit and delete jobs, manage applicants and statuses |
+| Admin | Full access, user management, role changes, favorites stats report |
 
-### `/api/jobs`
-CRUD של משרות, הגשת/ביטול מועמדות, ניהול מועמדים, דוח פופולריות.
+## Features
 
-### `/api/messages`
-שליחת הודעות, שיחות, סטטוס נקראו/לא נקראו.
+- Full CRUD for job listings with applicant management (pending / accepted / rejected)
+- Favorites saved to database — accessible from any device
+- Internal messaging system between cooks and restaurants
+- Password reset via email with a one-time token
+- Profile image upload
+- Search, filtering by location and wage, grid and table view modes
+- JWT authentication with automatic logout after 4 hours
+- Rate limiting, restricted CORS, dual validation (Joi + client-side)
 
-## משתמשי דמו
- מנהל | admin@gmail.com | Admin123123! 
- מסעדה | restaurant@gmail.com | Aa123123! 
- טבח | test@rest.com | Admin123123! 
+## Tech Stack
+
+**Frontend:** React 19, TypeScript, Redux Toolkit, React Bootstrap, Axios
+
+**Backend:** Node.js, Express, MongoDB, Mongoose, JWT, bcryptjs, Multer, Nodemailer
+
+## API Overview
+
+| Prefix | Description |
+|--------|-------------|
+| `/api/auth` | Register, login, profile, favorites, admin user management, password reset |
+| `/api/jobs` | Job CRUD, apply/cancel, applicant status, popularity report |
+| `/api/messages` | Send messages, conversations, read/unread status |
+
+## Demo Users
+
+| Role | Email | Password |
+|------|-------|----------|
+| Admin | admin@gmail.com | Admin123123! |
+| Restaurant | restaurant@gmail.com | Aa123123! |
+| Cook | test@rest.com | Admin123123! |

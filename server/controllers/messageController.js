@@ -29,8 +29,7 @@ exports.sendMessage = async (req, res) => {
 
     await newMessage.save();
     res.json(newMessage);
-  } catch (err) {
-    console.error(err);
+  } catch {
     res.status(500).json({ message: "שגיאה בשליחת ההודעה" });
   }
 };
@@ -47,8 +46,7 @@ exports.getChat = async (req, res) => {
     }).sort({ createdAt: 1 });
 
     res.json(messages);
-  } catch (err) {
-    console.error(err);
+  } catch {
     res.status(500).json({ message: "שגיאה בשליפת ההודעות" });
   }
 };
@@ -87,11 +85,11 @@ exports.getConversations = async (req, res) => {
     );
 
     res.json(result);
-  } catch (err) {
-    console.error(err);
+  } catch {
     res.status(500).json({ message: "שגיאה בטעינת השיחות" });
   }
 };
+
 exports.hideConversation = async (req, res) => {
   try {
     const { userId } = req.params;
@@ -113,8 +111,7 @@ exports.hideConversation = async (req, res) => {
       { $addToSet: { hiddenBy: myId } },
     );
     res.json({ message: "השיחה הוסתרה" });
-  } catch (err) {
-    console.error(err);
+  } catch {
     res.status(500).json({ message: "שגיאה בהסתרת השיחה" });
   }
 };
@@ -127,8 +124,7 @@ exports.getUnreadCount = async (req, res) => {
       hiddenBy: { $ne: new mongoose.Types.ObjectId(req.user.id) },
     });
     res.json({ unreadCount: count });
-  } catch (err) {
-    console.error(err);
+  } catch {
     res.status(500).json({ message: "שגיאה בספירת הודעות" });
   }
 };
@@ -148,8 +144,7 @@ exports.markAsRead = async (req, res) => {
     });
 
     res.json({ unreadCount: newCount });
-  } catch (err) {
-    console.error(err);
+  } catch {
     res.status(500).json({ message: "שגיאה בעדכון סטטוס קריאה" });
   }
 };
